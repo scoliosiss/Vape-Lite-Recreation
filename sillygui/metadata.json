@@ -1,0 +1,8 @@
+{
+  "name": "sillygui",
+  "description": "epic gui",
+  "author": "Scalesy",
+  "entry": "index.js",
+  "requires":["RenderLib"],
+  "version":"2.0"
+}
