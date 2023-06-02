@@ -17,7 +17,7 @@ register("renderWorld", (pticks) => {
                 //.draw();
             }
             if (c("esp")) {
-                RenderLib.drawInnerEspBox(smoothrenderbox(players[i], pticks).x,smoothrenderbox(players[i], pticks).y,smoothrenderbox(players[i], pticks).z, 0.8,1.9, 0.2,0.6,0.6,0.4,true)
+                RenderLib.drawInnerEspBox(smoothrenderbox(players[i], pticks).x,smoothrenderbox(players[i], pticks).y,smoothrenderbox(players[i], pticks).z, 0.7,1.9, 0.2,0.6,0.6,0.4,true)
             }
         }
     }

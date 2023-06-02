@@ -503,3 +503,34 @@ configlist.push(silly.replace("bwtapb"+toggle, "bwtapb"+toggle2)); ChatLib.chat(
 });
 
 
+export function bautotoolbbindtog() {
+if (guisopen) {
+bautotoolbfortnite1 = splittext(configlist.toString(), `bautotoolbbind`, `bautotoolb;`);
+idfkbautotoolb = bautotoolbfortnite1.charAt(0);
+keynumbautotoolb = bautotoolbfortnite1.replace(idfkbautotoolb, "");
+keynumbautotoolb -= 0}
+return {k: idfkbautotoolb, n: keynumbautotoolb}
+};
+let idfkbautotoolb = ""; let keynumbautotoolb = ""; let bautotoolbfortnite1 = ""; let bautotoolbpressed = false;
+
+register("tick", () => {
+bautotoolbbindtog(); let toggle = "false"; let toggle2 = "true"; let color = "a";
+if (!Client.Companion.isInGui()) {
+if (isNaN(bautotoolbbindtog().n)) {return;}
+if (Keyboard.isKeyDown(bautotoolbbindtog().n) && bautotoolbbindtog().n !== 13) {
+if (!bautotoolbpressed){bautotoolbpressed = true;
+if (c("autotool")) toggle = "true";
+else toggle = "false";
+if (toggle == "false") {
+toggle2 = "true"; color = "a"}
+else {toggle2 = "false"; color = "c"};
+keybinded = true;silly=configlist.toString();configlist.splice("");
+if (toggle2 == "true") {
+enabledfeatures.push("AutoTool")}
+else {enabledfeatures.splice(enabledfeatures.indexOf('AutoTool'), 1);}
+configlist.push(silly.replace("bautotoolb"+toggle, "bautotoolb"+toggle2)); ChatLib.chat(prefix+" > &"+color+"AutoTool")}
+} else bautotoolbpressed = false
+}
+});
+
+

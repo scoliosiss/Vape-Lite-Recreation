@@ -147,6 +147,7 @@ export class drawbut {
       else {
         newy = Math.floor(Renderer.screen.getHeight()/(501/this.y));
       }
+      
       // ===================================================
       //                  SCROLLING
       // ===================================================
@@ -194,7 +195,7 @@ export class drawbut {
           }
         }
         
-        if (guibottomline && !categoryrn("webhook nuker")) {
+        if (guibottomline) {
           if (imagebuttons) Renderer.drawImage(guifooterimage, newx, newy+newh-1, neww, guifootersize);
           else Renderer.drawRect(guifootercolor, newx, newy+newh-1, neww, 2)
         }

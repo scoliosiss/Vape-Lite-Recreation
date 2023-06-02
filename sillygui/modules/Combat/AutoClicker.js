@@ -11,7 +11,7 @@ register("clicked", (cum, cum2, cum3, cum4) => {
     }
 })
 
-let times = 0; let cps = 0
+let times = 0; let cps = 0; let go =true
 register("tick", () => {
     if (c("AutoClicker") && times < cps && (leftclickisdown || !c("Hold to click")) && (c("Blockhit") || !Player.getPlayer().func_71039_bw()) && (!c("Auto clicker break blocks") || Player.lookingAt().getClass() != Block)) {
         if (c("Extra randomization") && Math.random() <= 0.05) {
@@ -32,14 +32,20 @@ register("tick", () => {
             }).start()
         }
         if (c("Combo assist") && Player.getPlayer().field_82175_bq) {
-            LeftClick.invoke(mc)
-            times++
+            new Thread(() => {
+                if (go) {
+                    go=false
+                    LeftClick.invoke(mc)
+                    times++
+                    Thread.sleep(10)
+                    go=true
+                }
+            }).start()
             return;
         }
         if (Math.random() < cps/20) {
             LeftClick.invoke(mc)
             times++
-            ChatLib.chat(times)
         }
     }
     cps=n("CPS")

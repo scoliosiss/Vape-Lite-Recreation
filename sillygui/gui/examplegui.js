@@ -64,6 +64,10 @@ register("renderOverlay", function() {
     new drawbut(210, 55, 300, 25, "ESP", "", "2", categoryrn("visual")).togglebutton();
     //new drawbut(210, 55, 300, 25, "Fullbright", "", "2", categoryrn("visual")).togglebutton();
 
+    new drawbut(210, 55, 300, 25, "AutoTool", "", "2", categoryrn("utility")).togglebutton();
+    new drawbut(210, 55, 300, 25, "fast break", "", "3", categoryrn("utility") && r("autotool")).togglebutton();
+    new drawbut(210, 55, 300, 25, "fast break speed", "", "4", categoryrn("utility") && r("autotool")).togglebutton(1,2);
+
     new drawbut(210, 55, 300, 25, "Scaffold", "", "2", categoryrn("utility")).togglebutton();
     new drawbut(210, 55, 300, 25, "Only looking down", "", "3", categoryrn("utility") && r("scaffold")).togglebutton();
     new drawbut(210, 55, 300, 25, "Blocks only", "", "3", categoryrn("utility") && r("scaffold")).togglebutton();

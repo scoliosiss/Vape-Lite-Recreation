@@ -1,3 +1,13 @@
+let leftclickisdown=false; let rightclickisdown=false; let leftclicked = false; let rightclicked = false;
+register("clicked", (cum, cum2, cum3, cum4) => {
+    if (Client.currentGui.get() == null) {
+        if (cum3 == 0 && cum4) {leftclickisdown=true; leftclicked=true}
+        else if (cum3 == 0) leftclickisdown=false
+        if (cum3 == 1 && cum4) {rightclickisdown=true; rightclicked=true}
+        else if (cum3 == 1) rightclickisdown=false
+    }
+})
+
 export function distance_to_player(x,y,z) {
     let dX = Player.getX() - x
     let dZ = Player.getZ() - z
@@ -142,13 +152,49 @@ export function is_looking_near_coordinates(x,y,z,width,height) {
     return false;
 }
 
-const BP = Java.type("net.minecraft.util.BlockPos");
+export const BP = Java.type("net.minecraft.util.BlockPos");
 export function onedgeofblock() {
     airblock=false
     let position = new BP(Player.getX(), Player.getY()-0.7, Player.getZ());
     let block = mc.field_71441_e.func_180495_p(position).func_177230_c();
     if (block.getRegistryName().includes("air")) {airblock=true}
     return airblock
+}
+
+let stackinslot = 0; let currentslot = 33; let slotfixed = 0
+export function autotool(specificblock) {
+    blockatpos=""
+    for (let i = 0; i < 9; i++) {
+      let lookingAt = Player.lookingAt(); 
+      if (lookingAt.getClass() === Block) {
+        funnylook = new BP(lookingAt.getX(), lookingAt.getY(), lookingAt.getZ())
+        if (specificblock == null) blockatpos=mc.field_71441_e.func_180495_p(funnylook).func_177230_c();
+      }
+      else {
+        if (specificblock != null) blockatpos=specificblock
+      }
+      if (blockatpos!="") {
+        if (Player.getInventory().getStackInSlot(i) !== null) {
+          stackinsloti = Player.getInventory().getStackInSlot(i).getItemStack()
+          if (Player.getInventory().getStackInSlot(Player?.getHeldItemIndex())?.getItemStack() == undefined) stackinslot=1;
+          else stackinslot = Player.getInventory().getStackInSlot(Player.getHeldItemIndex()).getItemStack().func_150997_a(blockatpos)
+          if (stackinsloti.func_150997_a(blockatpos) > stackinslot) {
+            currentslot=Player.getHeldItemIndex()
+            Player.setHeldItemIndex(i)
+          }
+        }
+      }
+    }
+}
+
+export function swapback() {
+    if (!leftclickisdown) {
+      if (currentslot != 33) {
+        Player.setHeldItemIndex(slotfixed); 
+        currentslot=33
+      }
+      slotfixed=Player.getHeldItemIndex()
+    }
 }
 
 export const Shift = new KeyBind(mc.field_71474_y.field_74311_E);
